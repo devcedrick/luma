@@ -10,6 +10,8 @@ export default function Header() {
             alt="Luma App Mascot"
             width={40}
             height={40}
+            sizes="40px"
+            priority
             className="h-10 w-10 object-contain"
           />
           <h1 className="text-3xl font-bold tracking-tight text-text">
