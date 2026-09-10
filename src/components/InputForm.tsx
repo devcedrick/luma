@@ -10,15 +10,22 @@ const BOOLEAN_FIELDS = [
 interface InputFormProps {
   inputs: PatientInputs;
   onChange: (patch: Partial<PatientInputs>) => void;
+  onRun: () => void;
 }
 
-export default function InputForm({ inputs, onChange }: InputFormProps) {
+export default function InputForm({ inputs, onChange, onRun }: InputFormProps) {
   const blocked = Number.isNaN(inputs.temperature);
   const warn =
     !blocked && (inputs.temperature < 30 || inputs.temperature > 43);
 
   return (
-    <form className="grid w-full grid-cols-1 gap-4 sm:grid-cols-2">
+    <form
+      onSubmit={(e) => {
+        e.preventDefault();
+        onRun();
+      }}
+      className="grid w-full grid-cols-1 gap-4 sm:grid-cols-2"
+    >
       <div className="flex flex-col gap-1">
         <label htmlFor="temperature" className="text-sm font-medium text-text">
           Temperature (°C)

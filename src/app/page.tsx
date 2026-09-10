@@ -27,7 +27,7 @@ export default function Home() {
       <Header />
       <main className="mx-auto flex w-full max-w-3xl flex-1 flex-col gap-4 px-4 py-6">
         <TestCaseBar cases={TEST_CASES} onSelect={applyPreset} />
-        <InputForm inputs={inputs} onChange={setInputs} />
+        <InputForm inputs={inputs} onChange={setInputs} onRun={run} />
         <div className="flex flex-col gap-2">
           <RunButton onRun={run} isLoading={isLoading} disabled={blocked} />
           {hasRun && !isLoading && (
