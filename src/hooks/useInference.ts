@@ -33,10 +33,6 @@ export function useInference() {
 
   useEffect(() => clearTimer, [clearTimer]);
 
-  const setInputs = useCallback((patch: Partial<PatientInputs>) => {
-    setInputsState((prev) => ({ ...prev, ...patch }));
-  }, []);
-
   const clearResults = useCallback(() => {
     clearTimer();
     setFiredRules([]);
@@ -44,6 +40,17 @@ export function useInference() {
     setIsLoading(false);
     setHasRun(false);
   }, [clearTimer]);
+
+  const setInputs = useCallback(
+    (patch: Partial<PatientInputs>) => {
+      // Direct edits invalidate any in-flight or completed run: cancel the
+      // pending timer so forwardChain can never publish a stale snapshot,
+      // drop stale results, then apply the patch.
+      clearResults();
+      setInputsState((prev) => ({ ...prev, ...patch }));
+    },
+    [clearResults],
+  );
 
   const applyPreset = useCallback(
     (preset: TestCasePreset) => {
