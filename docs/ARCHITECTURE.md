@@ -56,7 +56,7 @@ Role: run lifecycle state. Exposes `inputs`, `setInputs`, `applyPreset(preset)`,
 
 ### Components (one role line each)
 
-- `Header.tsx`: title + subtitle + About anchor link smooth-scrolling to the in-page About section (FR-4.3).
+- `Header.tsx`: mascot mark + short brand title, academic-purpose subtitle (exact C-6 copy), About anchor link smooth-scrolling to the in-page About section (FR-4.3).
 - `TestCaseBar.tsx`: `props { cases, onSelect }`; five buttons (FR-1.2).
 - `InputForm.tsx`: `props { inputs, onChange }`; six controlled inputs; temperature uses `input[type=number]`, blocks empty/NaN with an inline message, warns outside 30–43 °C (FR-1.1, FR-1.4).
 - `RunButton.tsx`: `props { onRun, isLoading }`; CTA + spinner/pulse (FR-1.3).

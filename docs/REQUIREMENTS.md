@@ -51,7 +51,7 @@ Derived from [[PROJECT]]. Stack: Next.js 16.3.4 (App Router) + TypeScript strict
 - C-3 **Stateless:** no storage, no API routes, no persistence; working memory exists only per run in component state.
 - C-4 **Single route:** `/` only; adding a route requires an ADR.
 - C-5 **Toolchain/verification:** Node 22, npm 11; verify with `npm run build` and `npm run lint` — no reliance on stale memory.
-- C-6 **Academic:** exact footer copy (two-line disclaimer + author Ken Cedrick Jimeno); the former banner sentence is retired with the deleted component; due 2026-09-11 17:00.
+- C-6 **Academic:** exact copy in two places — the header subtitle sentence and the footer two-liner (disclaimer + author Ken Cedrick Jimeno); the banner component itself is retired; due 2026-09-11 17:00.
 - C-7 **Theme:** dark-only per [[UI_GUIDELINES]]; no light mode.
 
 ## 4. Out of Scope

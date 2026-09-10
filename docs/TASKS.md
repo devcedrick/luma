@@ -18,7 +18,7 @@ Build order with done-criteria only. Logic lives in [[REQUIREMENTS]], [[DATA_MOD
 ## Phase 1 — Static shell (no behavior)
 
 - [ ] T1.1 ~~`src/components/AcademicBanner.tsx` — sticky bar, exact C-6 copy (FR-4.1). Done: copy matches character-for-character.~~ **Removed:** banner component deleted; disclaimer consolidated in the footer (T1.3).
-- [ ] T1.2 `src/components/Header.tsx` — title, subtitle, About anchor link (FR-4.3). Done: renders per [[UI_GUIDELINES]].
+- [ ] T1.2 `src/components/Header.tsx` — mascot mark, short brand title, academic-purpose subtitle sentence (exact C-6 copy), About anchor link (FR-4.3). Done: renders per [[UI_GUIDELINES]].
 - [ ] T1.3 `src/components/Footer.tsx` — author + exact C-6 copy (FR-4.2). Done: copy matches.
 - [ ] T1.4 `src/components/InputForm.tsx` static layout — six labeled inputs, uncontrolled ok at this stage (FR-1.1). Done: all fields visible at 375 px (NFR-3).
 - [ ] T1.5 Tokens — `globals.css` CSS vars + Tailwind wiring per [[UI_GUIDELINES]] (C-7, NFR-5). Done: token table values render.
@@ -50,7 +50,7 @@ Build order with done-criteria only. Logic lives in [[REQUIREMENTS]], [[DATA_MOD
 - [ ] T5.1 `npm run build` passes with zero errors.
 - [ ] T5.2 `npm run lint` passes with zero findings.
 - [ ] T5.3 5-case determinism re-check against [[DATA_MODEL]] §6 (NFR-1).
-- [ ] T5.4 Disclaimer copy audit — footer matches C-6 exactly (FR-4.2).
+- [ ] T5.4 Disclaimer copy audit — header subtitle + footer match C-6 exactly (FR-4.2).
 - [ ] T5.5 NFR sweep — NFR-2 (instant runs), NFR-3 (375 px), NFR-4 (no new runtime deps), NFR-5 (dark-only, tokens only).
 
 ## Out of scope for this list

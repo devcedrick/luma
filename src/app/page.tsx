@@ -4,7 +4,7 @@ import InputForm from "@/components/InputForm";
 
 export default function Home() {
   return (
-    <div className="flex min-h-dvh flex-col flex-1 bg-bg text-text">
+    <div className="flex min-h-dvh flex-col bg-bg text-text">
       <Header />
       <main className="mx-auto w-full max-w-3xl flex-1 px-4 py-6">
         <InputForm />

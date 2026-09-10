@@ -11,7 +11,7 @@ Entries state *what* changed; `[ADR-XXXX]` references carry *why*.
 
 ### Removed
 
-- Academic banner component (`src/components/AcademicBanner.tsx`) and FR-4.1 retired; academic disclaimer consolidated in the footer (FR-4.2, C-6).
+- Academic banner component (`src/components/AcademicBanner.tsx`) and FR-4.1 retired; the banner sentence is reused as the header subtitle and the disclaimer consolidated in the footer (FR-4.2, C-6).
 
 ### Changed
 
