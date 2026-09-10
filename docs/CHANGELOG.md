@@ -9,6 +9,10 @@ Entries state *what* changed; `[ADR-XXXX]` references carry *why*.
 
 ## [Unreleased]
 
+### Removed
+
+- Academic banner component (`src/components/AcademicBanner.tsx`) and FR-4.1 retired; academic disclaimer consolidated in the footer (FR-4.2, C-6).
+
 ### Changed
 
 - Resolved vault TBDs: About as in-page anchor section (FR-4.3), temperature block-plus-warn rule (FR-1.4), filtered-causal diagnosis derivation (FR-3.3).

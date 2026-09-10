@@ -56,7 +56,6 @@ Role: run lifecycle state. Exposes `inputs`, `setInputs`, `applyPreset(preset)`,
 
 ### Components (one role line each)
 
-- `AcademicBanner.tsx`: static sticky banner, exact C-6 copy (FR-4.1).
 - `Header.tsx`: title + subtitle + About anchor link smooth-scrolling to the in-page About section (FR-4.3).
 - `TestCaseBar.tsx`: `props { cases, onSelect }`; five buttons (FR-1.2).
 - `InputForm.tsx`: `props { inputs, onChange }`; six controlled inputs; temperature uses `input[type=number]`, blocks empty/NaN with an inline message, warns outside 30–43 °C (FR-1.1, FR-1.4).
@@ -101,6 +100,5 @@ Flow D — Animations (FR-3.1–FR-3.4): page-load fade (Header), button pulse (
 | FR-3.2 | `/` | `WorkingMemoryPanel` |
 | FR-3.3 | `/` | `DiagnosisCard` |
 | FR-3.4 | `/` | `useInference`, all result components |
-| FR-4.1 | `/` | `AcademicBanner` |
 | FR-4.2 | `/` | `Footer` |
 | FR-4.3 | `/` | `Header` |
