@@ -5,7 +5,7 @@ tags: [tasks, build-order]
 
 # Luma - Tasks
 
-Build order with done-criteria only. Logic lives in [[REQUIREMENTS]], [[DATA_MODEL]], [[ARCHITECTURE]], [[UI_GUIDELINES]] — this file never redefines it. Every box cites an FR/C; resolve the two `TBD`s (FR-1.4, FR-3.3) before their phase.
+Build order with done-criteria only. Logic lives in [[REQUIREMENTS]], [[DATA_MODEL]], [[ARCHITECTURE]], [[UI_GUIDELINES]] — this file never redefines it. Every box cites an FR/C.
 
 ## Phase 0 — Inference foundation (no UI)
 
@@ -18,7 +18,7 @@ Build order with done-criteria only. Logic lives in [[REQUIREMENTS]], [[DATA_MOD
 ## Phase 1 — Static shell (no behavior)
 
 - [ ] T1.1 `src/components/AcademicBanner.tsx` — sticky bar, exact C-6 copy (FR-4.1). Done: copy matches character-for-character.
-- [ ] T1.2 `src/components/Header.tsx` — title, subtitle (FR-4.3 About entry: implement `TBD` decision first). Done: renders per [[UI_GUIDELINES]].
+- [ ] T1.2 `src/components/Header.tsx` — title, subtitle, About anchor link (FR-4.3). Done: renders per [[UI_GUIDELINES]].
 - [ ] T1.3 `src/components/Footer.tsx` — author + exact C-6 copy (FR-4.2). Done: copy matches.
 - [ ] T1.4 `src/components/InputForm.tsx` static layout — six labeled inputs, uncontrolled ok at this stage (FR-1.1). Done: all fields visible at 375 px (NFR-3).
 - [ ] T1.5 Tokens — `globals.css` CSS vars + Tailwind wiring per [[UI_GUIDELINES]] (C-7, NFR-5). Done: token table values render.
@@ -28,14 +28,14 @@ Build order with done-criteria only. Logic lives in [[REQUIREMENTS]], [[DATA_MOD
 - [ ] T2.1 `src/hooks/useInference.ts` — inputs, `applyPreset`, `run`, `reset`, `isLoading`, `hasRun` (FR-1.2, FR-1.3, FR-3.4). Done: preset fills form and clears prior results.
 - [ ] T2.2 Wire `InputForm` controlled + `TestCaseBar.onSelect` (FR-1.1, FR-1.2). Done: every keystroke/selection reflects in state.
 - [ ] T2.3 Wire `RunButton` loading state around synchronous `forwardChain` (FR-1.3). Done: spinner shows per run.
-- [ ] T2.4 Temperature rule — implement FR-1.4 `TBD` decision (validation/degrade). Done: behavior documented in [[DATA_MODEL]] §2 rules paragraph.
+- [ ] T2.4 Temperature rule — `input[type=number]`; block empty/NaN with an inline message; warn outside 30–43 °C; any numeric runs (FR-1.4). Done: behavior documented in [[DATA_MODEL]] §2 rules paragraph.
 - [ ] T2.5 `page.tsx` composition — banner, header, test bar, form, button, result slots (FR-1.1–FR-4.2). Done: single `/` renders end-to-end without animation.
 
 ## Phase 3 — Results components
 
 - [ ] T3.1 `src/components/InferenceTrace.tsx` — ordered fired-rule cards (FR-3.1). Done: card count equals `firedRules` length, order matches.
 - [ ] T3.2 `src/components/WorkingMemoryPanel.tsx` — fact chips for final memory (FR-3.2). Done: chip set equals `finalMemory`.
-- [ ] T3.3 `src/components/DiagnosisCard.tsx` — highlighted recommendation (FR-3.3). Blocked on FR-3.3 `TBD` conclusion-derivation rule. Done: displayed conclusion follows the decided rule on all 5 cases.
+- [ ] T3.3 `src/components/DiagnosisCard.tsx` — highlighted recommendation (FR-3.3). Derivation: disease/decision terminals in rule-id order, fever/nasal fallback. Done: output matches all 5 [[DATA_MODEL]] §6 outcomes.
 - [ ] T3.4 Reset path — `reset()` clears results; sections unmount (FR-3.4). Done: returns to [[DATA_MODEL]] §6 empty-state.
 
 ## Phase 4 — Motion + responsive polish
@@ -43,7 +43,7 @@ Build order with done-criteria only. Logic lives in [[REQUIREMENTS]], [[DATA_MOD
 - [ ] T4.1 Entrance stagger — trace 80 ms slide-in, chips 40 ms scale, delayed diagnosis glow, header fade, button pulse (FR-3.1–FR-3.3 per [[ARCHITECTURE]] Flow D). Done: matches animation table in [[UI_GUIDELINES]].
 - [ ] T4.2 Exit transitions — `AnimatePresence` fade-out on reset/new run (FR-3.4). Done: no instant unmount flashes.
 - [ ] T4.3 Responsive pass at 375 px — form grid stacks, trace cards full-width (NFR-3). Done: no horizontal scroll, all controls reachable.
-- [ ] T4.4 About resolution — implement FR-4.3 `TBD` (or drop the entry). Done: entry either works or is removed.
+- [ ] T4.4 About section — in-page anchor section plus header smooth-scroll link (FR-4.3). Done: link scrolls to section; no new route.
 
 ## Phase 5 — Verification + hardening (C-5, NFR sweep)
 

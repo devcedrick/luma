@@ -14,7 +14,7 @@ Derived from [[PROJECT]]. Stack: Next.js 16.3.4 (App Router) + TypeScript strict
 - FR-1.1: User can enter all 6 input values on page load (`src/components/InputForm.tsx`).
 - FR-1.2: User can load any of 5 preset cases into the form with one click (`src/components/TestCaseBar.tsx`, `src/lib/testCases.ts`).
 - FR-1.3: User can start inference from the form; the run button shows a loading state while inference executes (`src/components/RunButton.tsx`, `src/hooks/useInference.ts`).
-- FR-1.4: `TBD` — validation/degrade rule for the temperature field (empty, non-numeric, or out-of-range input). Must be decided before build; never silently drop input.
+- FR-1.4: System blocks the run on empty or non-numeric temperature with an inline message (`src/components/InputForm.tsx`). Any numeric value runs (Rules 1–3 are total over all reals); values outside 30–43 °C run with a non-blocking plausibility warning. Nothing is ever silently coerced or dropped.
 
 ### FR-2 Inference engine
 
@@ -27,14 +27,14 @@ Derived from [[PROJECT]]. Stack: Next.js 16.3.4 (App Router) + TypeScript strict
 
 - FR-3.1: User can view the chain of fired rules in order, one animated card per rule (`src/components/InferenceTrace.tsx`).
 - FR-3.2: User can view all final working-memory facts as chips (`src/components/WorkingMemoryPanel.tsx`).
-- FR-3.3: User can read the highlighted final recommendation (`src/components/DiagnosisCard.tsx`). `TBD` — conclusion-derivation rule (which fact wins when several terminal facts exist). Must be decided before build.
+- FR-3.3: User can read the highlighted final recommendation (`src/components/DiagnosisCard.tsx`). Derivation rule: display terminal facts from the disease/decision set {`cold`, `treat`, `dont_treat`, `give_medication`, `dont_give_medication`, `give_tylenol`, `give_antibiotics`} ordered by firing rule id, humanized; if that set is empty, display the fever/nasal findings instead. Reproduces all five [[DATA_MODEL]] §6 outcomes.
 - FR-3.4: User can reset the run; result sections clear with an exit animation (`src/hooks/useInference.ts`, `AnimatePresence`).
 
 ### FR-4 Academic framing
 
 - FR-4.1: System shows the persistent academic banner with the exact Section 14 copy (`src/components/AcademicBanner.tsx`).
 - FR-4.2: System shows the footer with author name Ken Cedrick Jimeno and the exact Section 14 copy (`src/components/Footer.tsx`).
-- FR-4.3: `TBD` — About entry point behavior (header shows About; route vs modal vs section undecided).
+- FR-4.3: User can jump to an in-page About section from the header link via smooth-scroll anchor on the same route (`src/components/Header.tsx`). No new route (see C-4).
 
 ## 2. Non-functional Requirements
 

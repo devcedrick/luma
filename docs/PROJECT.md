@@ -70,7 +70,7 @@ luma/
 │   │   └── favicon.ico
 │   ├── components/
 │   │   ├── AcademicBanner.tsx  # sticky disclaimer bar
-│   │   ├── Header.tsx          # app name + subtitle (+ About entry, TBD)
+│   │   ├── Header.tsx          # app name + subtitle + About anchor link
 │   │   ├── TestCaseBar.tsx     # 5 preset case buttons
 │   │   ├── InputForm.tsx       # six patient inputs
 │   │   ├── RunButton.tsx       # CTA with loading state
@@ -94,6 +94,6 @@ Notes:
 
 - Stateless by design: no database, no API routes, no persistence (see [[REQUIREMENTS]] C-3).
 - Inference engine is pure TypeScript with zero non-UI dependencies.
-- About entry point exists in the header mock; its behavior is `TBD` (see [[REQUIREMENTS]] FR-4.3).
-- Conclusion-derivation rule for the diagnosis card is `TBD` (see [[REQUIREMENTS]] FR-3.3).
-- Temperature-input validation behavior is `TBD` (see [[REQUIREMENTS]] FR-1.4).
+- About entry point is an in-page anchor section reached from the header link (see [[REQUIREMENTS]] FR-4.3).
+- Diagnosis card shows disease/decision terminals in causal order with a fever/nasal fallback (see [[REQUIREMENTS]] FR-3.3).
+- Empty/non-numeric temperature blocks the run; implausible values warn without blocking (see [[REQUIREMENTS]] FR-1.4).

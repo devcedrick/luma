@@ -30,7 +30,7 @@ Rules:
 | :--- | :---- | :------------- | :------- |
 | `src/app/page.tsx` (`/`) | Luma — Rule-Based Expert System | Reads form state via `useInference`; writes nothing persistent; owns all creation | FR-1.1–FR-4.2 |
 
-Gaps (honest): only `layout.tsx`, `page.tsx`, `globals.css` exist today — all `components/`, `lib/`, `hooks/` files in [[PROJECT]] are pending (see [[TASKS]]). About entry behavior is `TBD` (FR-4.3); if it becomes a route, C-4 requires an ADR first.
+Gaps (honest): only `layout.tsx`, `page.tsx`, `globals.css` exist today — all `components/`, `lib/`, `hooks/` files in [[PROJECT]] are pending (see [[TASKS]]). About is an in-page anchor section on `/` (FR-4.3); a separate route would require an ADR first (C-4).
 
 ## 3. Module contracts
 
@@ -57,13 +57,13 @@ Role: run lifecycle state. Exposes `inputs`, `setInputs`, `applyPreset(preset)`,
 ### Components (one role line each)
 
 - `AcademicBanner.tsx`: static sticky banner, exact C-6 copy (FR-4.1).
-- `Header.tsx`: title + subtitle + About entry (FR-4.3 `TBD`).
+- `Header.tsx`: title + subtitle + About anchor link smooth-scrolling to the in-page About section (FR-4.3).
 - `TestCaseBar.tsx`: `props { cases, onSelect }`; five buttons (FR-1.2).
-- `InputForm.tsx`: `props { inputs, onChange }`; six controlled inputs (FR-1.1, FR-1.4).
+- `InputForm.tsx`: `props { inputs, onChange }`; six controlled inputs; temperature uses `input[type=number]`, blocks empty/NaN with an inline message, warns outside 30–43 °C (FR-1.1, FR-1.4).
 - `RunButton.tsx`: `props { onRun, isLoading }`; CTA + spinner/pulse (FR-1.3).
 - `InferenceTrace.tsx`: `props { firedRules }`; staggered rule cards (FR-3.1).
 - `WorkingMemoryPanel.tsx`: `props { facts }`; mono fact chips (FR-3.2).
-- `DiagnosisCard.tsx`: `props { recommendation }`; amber-glow conclusion (FR-3.3, derivation `TBD`).
+- `DiagnosisCard.tsx`: `props { recommendation }`; amber-glow conclusion derived by the FR-3.3 filtered-causal rule (disease/decision terminals in rule-id order, fever/nasal fallback).
 - `Footer.tsx`: author + exact C-6 copy (FR-4.2).
 
 ## 4. Data flows
@@ -86,7 +86,7 @@ Flow D — Animations (FR-3.1–FR-3.4): page-load fade (Header), button pulse (
 
 - Theming: dark-only tokens in `globals.css` CSS vars + Tailwind utilities; token table in [[UI_GUIDELINES]]; no light mode (C-7).
 - Fonts: Inter 700 display, JetBrains Mono for facts/rule IDs (see [[UI_GUIDELINES]]).
-- Error policy: invalid temperature handling is `TBD` (FR-1.4) — never crash, never silently coerce; degrade path must be explicit before build.
+- Error policy: empty/non-numeric temperature blocks the run with an inline message; implausible values warn without blocking (FR-1.4) — never crash, never silently coerce.
 - Verification: `npm run build` (Turbopack production build) and `npm run lint` (C-5); 5-case console check per [[DATA_MODEL]] §6.
 
 ## 6. Traceability (FR → modules)
@@ -99,8 +99,8 @@ Flow D — Animations (FR-3.1–FR-3.4): page-load fade (Header), button pulse (
 | FR-2.1–FR-2.4 | `/` (via run) | `inference`, `rules`, `types` |
 | FR-3.1 | `/` | `InferenceTrace` |
 | FR-3.2 | `/` | `WorkingMemoryPanel` |
-| FR-3.3 | `/` | `DiagnosisCard` (derivation `TBD`) |
+| FR-3.3 | `/` | `DiagnosisCard` |
 | FR-3.4 | `/` | `useInference`, all result components |
 | FR-4.1 | `/` | `AcademicBanner` |
 | FR-4.2 | `/` | `Footer` |
-| FR-4.3 | `/` (`TBD`) | `Header` (`TBD`) |
+| FR-4.3 | `/` | `Header` |

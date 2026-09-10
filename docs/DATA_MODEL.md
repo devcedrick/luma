@@ -11,7 +11,7 @@ Source of truth for domain shapes. Formats stated here once; validators and revi
 
 | Entity | Fields | Notes |
 | :----- | :----- | :---- |
-| `PatientInputs` | `temperature: number` (°C, any numeric); `nasal_breathing: NasalBreathing` enum `"none" \| "light" \| "heavy"`; `headache, cough, sore_throat, antibiotics_allergy: boolean` | All fields required on the form object; raw temperature validation is `TBD` per [[REQUIREMENTS]] FR-1.4 |
+| `PatientInputs` | `temperature: number` (°C, any numeric); `nasal_breathing: NasalBreathing` enum `"none" \| "light" \| "heavy"`; `headache, cough, sore_throat, antibiotics_allergy: boolean` | All fields required on the form object; temperature follows the FR-1.4 block-plus-warn rule |
 | `Fact` | string-literal union (15 members: 3 fever, 2 nasal, 4 symptom, 1 cold, 5 treatment-chain) | Closed set; Rules 1–12 are the only producers |
 | `WorkingMemory` | `Set<Fact>` | In-memory only, per run (C-3) |
 | `Rule` | `id: number` (1–12); `label: string`; `description: string`; `condition(wm, inputs): boolean`; `conclusion: Fact` | Conditions may read raw `temperature`/`nasal_breathing` directly (Rules 1–5) |
@@ -64,7 +64,7 @@ interface TestCasePreset {
 }
 ```
 
-Rules: every `PatientInputs` field is required and non-empty on submit; `temperature`/`nasal_breathing` are consumed raw by Rules 1–5 and never seeded as facts; only `true` booleans seed facts (`headache` → `"headache"`, etc.); nothing degrades to `null` — invalid temperature is `TBD` per [[REQUIREMENTS]] FR-1.4 and must be flagged for review, never silently dropped.
+Rules: every `PatientInputs` field is required and non-empty on submit; `temperature`/`nasal_breathing` are consumed raw by Rules 1–5 and never seeded as facts; only `true` booleans seed facts (`headache` → `"headache"`, etc.); nothing degrades to `null` — empty/non-numeric temperature blocks the run with an inline message and values outside 30–43 °C raise a non-blocking warning per [[REQUIREMENTS]] FR-1.4, never silently dropped. Diagnosis display follows the filtered-causal rule in [[REQUIREMENTS]] FR-3.3.
 
 ## 3. Schema
 
@@ -74,7 +74,7 @@ N/A — stateless system per [[REQUIREMENTS]] C-3. No tables, no migrations, no 
 
 | Source field | TS field | DB column | Null handling |
 | :----------- | :------- | :-------- | :------------ |
-| Form temperature input | `PatientInputs.temperature` | — (none) | `TBD` per FR-1.4; never coerce silently |
+| Form temperature input | `PatientInputs.temperature` | — (none) | FR-1.4 block-plus-warn; never coerce silently |
 | Form nasal select | `PatientInputs.nasal_breathing` | — | Enum-closed; no null |
 | Form toggles | `PatientInputs.headache/cough/sore_throat/antibiotics_allergy` | — | `false` seeds nothing; no null |
 | Seeded/derived facts | `Fact` in `WorkingMemory` | — | Closed union; no null |
