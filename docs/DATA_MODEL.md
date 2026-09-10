@@ -9,14 +9,14 @@ Source of truth for domain shapes. Formats stated here once; validators and revi
 
 ## 1. Entities
 
-| Entity | Fields | Notes |
-| :----- | :----- | :---- |
-| `PatientInputs` | `temperature: number` (°C, any numeric); `nasal_breathing: NasalBreathing` enum `"none" \| "light" \| "heavy"`; `headache, cough, sore_throat, antibiotics_allergy: boolean` | All fields required on the form object; temperature follows the FR-1.4 block-plus-warn rule |
-| `Fact` | string-literal union (15 members: 3 fever, 2 nasal, 4 symptom, 1 cold, 5 treatment-chain) | Closed set; Rules 1–12 are the only producers |
-| `WorkingMemory` | `Set<Fact>` | In-memory only, per run (C-3) |
-| `Rule` | `id: number` (1–12); `label: string`; `description: string`; `condition(wm, inputs): boolean`; `conclusion: Fact` | Conditions may read raw `temperature`/`nasal_breathing` directly (Rules 1–5) |
-| `FiredRule` | `rule: Rule`; `conclusion: Fact`; `iterationNumber: number` (1-based fixpoint pass) | Ordered by firing; drives [[PROJECT]] trace |
-| `TestCasePreset` | `label: string`; `expectedOutcome: string`; `inputs: PatientInputs` | 5 presets; expected outcomes in §6 |
+| Entity           | Fields                                                                                                                                                                       | Notes                                                                                       |
+| :--------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :------------------------------------------------------------------------------------------ |
+| `PatientInputs`  | `temperature: number` (°C, any numeric); `nasal_breathing: NasalBreathing` enum `"none" \| "light" \| "heavy"`; `headache, cough, sore_throat, antibiotics_allergy: boolean` | All fields required on the form object; temperature follows the FR-1.4 block-plus-warn rule |
+| `Fact`           | string-literal union (15 members: 3 fever, 2 nasal, 4 symptom, 1 cold, 5 treatment-chain)                                                                                    | Closed set; Rules 1–12 are the only producers                                               |
+| `WorkingMemory`  | `Set<Fact>`                                                                                                                                                                  | In-memory only, per run (C-3)                                                               |
+| `Rule`           | `id: number` (1–12); `label: string`; `description: string`; `condition(wm, inputs): boolean`; `conclusion: Fact`                                                            | Conditions may read raw `temperature`/`nasal_breathing` directly (Rules 1–5)                |
+| `FiredRule`      | `rule: Rule`; `conclusion: Fact`; `iterationNumber: number` (1-based fixpoint pass)                                                                                          | Ordered by firing; drives [[PROJECT]] trace                                                 |
+| `TestCasePreset` | `label: string`; `expectedOutcome: string`; `inputs: PatientInputs`                                                                                                          | 5 presets; expected outcomes in §6                                                          |
 
 ## 2. TypeScript contracts
 
