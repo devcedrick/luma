@@ -59,7 +59,7 @@ Role: run lifecycle state. Exposes `inputs`, `setInputs`, `applyPreset(preset)`,
 - `Header.tsx`: mascot mark + short brand title, academic-purpose subtitle (exact C-6 copy), About anchor link smooth-scrolling to the in-page About section (FR-4.3).
 - `TestCaseBar.tsx`: `props { cases, onSelect }`; five buttons (FR-1.2).
 - `InputForm.tsx`: `props { inputs, onChange }`; six controlled inputs; temperature uses `input[type=number]`, blocks empty/NaN with an inline message, warns outside 30–43 °C (FR-1.1, FR-1.4).
-- `RunButton.tsx`: `props { onRun, isLoading }`; CTA + spinner/pulse (FR-1.3).
+- `RunButton.tsx`: `props { onRun, isLoading, disabled? }`; CTA + spinner/pulse, disabled while loading or temperature empty (FR-1.3, FR-1.4).
 - `InferenceTrace.tsx`: `props { firedRules }`; staggered rule cards (FR-3.1).
 - `WorkingMemoryPanel.tsx`: `props { facts }`; mono fact chips (FR-3.2).
 - `DiagnosisCard.tsx`: `props { recommendation }`; amber-glow conclusion derived by the FR-3.3 filtered-causal rule (disease/decision terminals in rule-id order, fever/nasal fallback).
