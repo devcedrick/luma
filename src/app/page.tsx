@@ -15,6 +15,8 @@ export default function Home() {
     applyPreset,
     run,
     reset,
+    firedRules,
+    finalMemory,
     isLoading,
     hasRun,
   } = useInference();
@@ -38,6 +40,28 @@ export default function Home() {
             </button>
           )}
         </div>
+        {hasRun && !isLoading && finalMemory && (
+          <section
+            aria-live="polite"
+            className="flex flex-col gap-2 rounded-md border border-border bg-surface p-4"
+          >
+            <h2 className="text-sm font-bold text-text">Results</h2>
+            <ol className="flex flex-col gap-1 font-mono text-xs text-text">
+              {firedRules.map((fired) => (
+                <li key={fired.rule.id}>
+                  Rule {fired.rule.id} → {fired.conclusion}
+                  <span className="text-text-muted">
+                    {" "}
+                    (iteration {fired.iterationNumber})
+                  </span>
+                </li>
+              ))}
+            </ol>
+            <p className="font-mono text-xs text-text-muted">
+              {[...finalMemory].join(", ")}
+            </p>
+          </section>
+        )}
       </main>
       <Footer />
     </div>
