@@ -14,7 +14,7 @@ Luma is a web-based rule-based expert system built for Intelligent Systems Labor
 - Run forward-chaining inference across all 12 rules (professor requirement 3).
 - Show the chain of fired rules in order, animated (professor requirement 4).
 - Show the final working memory contents (professor requirement 5).
-- State the academic purpose persistently (banner + footer).
+- State the academic purpose persistently (footer).
 
 ## Core Features
 
@@ -26,7 +26,7 @@ Luma is a web-based rule-based expert system built for Intelligent Systems Labor
 | Inference trace | User can watch fired rules appear one card at a time, in firing order |
 | Working memory panel | User can inspect every fact present after inference halts |
 | Diagnosis card | User can read the highlighted final recommendation |
-| Academic banner + footer | User always sees the lab-activity disclaimer and author name |
+| Academic footer | User always sees the lab-activity disclaimer and author name |
 
 ## Tech Stack
 
@@ -40,7 +40,7 @@ Luma is a web-based rule-based expert system built for Intelligent Systems Labor
 
 ## Basic User Flow
 
-1. User opens `/` and sees the academic banner, header, test case bar, and empty input form.
+1. User opens `/` and sees the header, test case bar, and empty input form.
 2. User types the six observations (or clicks a preset case button to fill them).
 3. User clicks Run Inference; the button shows a loading state.
 4. Inference seeds working memory and forward-chains to a fixpoint synchronously.
@@ -69,7 +69,6 @@ luma/
 │   │   ├── globals.css         # tailwind base + CSS vars (tokens)
 │   │   └── favicon.ico
 │   ├── components/
-│   │   ├── AcademicBanner.tsx  # sticky disclaimer bar
 │   │   ├── Header.tsx          # app name + subtitle + About anchor link
 │   │   ├── TestCaseBar.tsx     # 5 preset case buttons
 │   │   ├── InputForm.tsx       # six patient inputs

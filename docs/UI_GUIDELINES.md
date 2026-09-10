@@ -10,7 +10,7 @@ Dark-only, single-screen companion to [[ARCHITECTURE]] §5 and [[REQUIREMENTS]] 
 ## Layout + spacing
 
 - Tailwind utilities only; page is a centered single column, mobile-first (NFR-3, verify 375 px).
-- Sections stack: banner → header → test bar → form → run → trace → memory → diagnosis → footer (see [[PROJECT]] flow).
+- Sections stack: header → test bar → form → run → trace → memory → diagnosis → footer (see [[PROJECT]] flow).
 - Form uses a 2-column grid on desktop, stacked on mobile. Consistent `gap` scale; no custom CSS except tokens.
 - Escape hatch: custom CSS only in `globals.css` for tokens/fonts; component-level `<style>` is forbidden.
 
@@ -32,8 +32,7 @@ Fonts: Inter 700 for display/headings; JetBrains Mono for fact names, rule IDs, 
 
 ## Component visual contracts
 
-- `AcademicBanner`: sticky top, full-width, muted surface; exact C-6 copy, no truncation on mobile.
-- `Header`: title fade-in + slide-up once on load; subtitle names the system; About anchor link smooth-scrolls to the in-page section (FR-4.3).
+- `Header`: mascot mark + short brand title; subtitle carries the academic-purpose sentence (exact C-6 copy); title fade-in + slide-up once on load; About anchor link smooth-scrolls to the in-page section (FR-4.3).
 - `TestCaseBar`: five equal buttons in a wrapping row; active-case state uses `--accent-dim`.
 - `InputForm`: labeled controls — temperature numeric input (°C), nasal select (none/light/heavy), four Yes/No radio groups; empty/non-numeric temperature blocks the run with an inline message, values outside 30–43 °C warn without blocking (FR-1.4).
 - `RunButton`: full-width-ish CTA; loading shows spinner + pulse, disables repeat clicks.

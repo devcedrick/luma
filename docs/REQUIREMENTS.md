@@ -32,8 +32,8 @@ Derived from [[PROJECT]]. Stack: Next.js 16.3.4 (App Router) + TypeScript strict
 
 ### FR-4 Academic framing
 
-- FR-4.1: System shows the persistent academic banner with the exact Section 14 copy (`src/components/AcademicBanner.tsx`).
-- FR-4.2: System shows the footer with author name Ken Cedrick Jimeno and the exact Section 14 copy (`src/components/Footer.tsx`).
+- FR-4.1: ~~System shows the persistent academic banner with the exact Section 14 copy.~~ **Removed** — banner component deleted; the academic disclaimer lives in the footer (FR-4.2).
+- FR-4.2: System shows the footer with author name Ken Cedrick Jimeno and the two-line academic disclaimer (`src/components/Footer.tsx`).
 - FR-4.3: User can jump to an in-page About section from the header link via smooth-scroll anchor on the same route (`src/components/Header.tsx`). No new route (see C-4).
 
 ## 2. Non-functional Requirements
@@ -51,7 +51,7 @@ Derived from [[PROJECT]]. Stack: Next.js 16.3.4 (App Router) + TypeScript strict
 - C-3 **Stateless:** no storage, no API routes, no persistence; working memory exists only per run in component state.
 - C-4 **Single route:** `/` only; adding a route requires an ADR.
 - C-5 **Toolchain/verification:** Node 22, npm 11; verify with `npm run build` and `npm run lint` — no reliance on stale memory.
-- C-6 **Academic:** exact banner/footer copy from plan Section 14; author Ken Cedrick Jimeno; due 2026-09-11 17:00.
+- C-6 **Academic:** exact copy in two places — the header subtitle sentence and the footer two-liner (disclaimer + author Ken Cedrick Jimeno); the banner component itself is retired; due 2026-09-11 17:00.
 - C-7 **Theme:** dark-only per [[UI_GUIDELINES]]; no light mode.
 
 ## 4. Out of Scope
