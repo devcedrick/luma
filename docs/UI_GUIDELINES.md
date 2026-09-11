@@ -32,7 +32,7 @@ Fonts: Inter 700 for display/headings; JetBrains Mono for fact names, rule IDs, 
 
 ## Component visual contracts
 
-- `Header`: bordered card with framed mascot mark, short brand title + badge, engine tagline; C-6 sentence in an info box; button-style About anchor smooth-scrolls to the in-page section (FR-4.3).
+- `Header`: bordered card with framed mascot mark, short brand title + badge, engine tagline; C-6 sentence in an info box; button-style About button opening the About dialog (FR-4.3).
 - `TestCaseBar`: five equal buttons in a wrapping row; active-case state uses `--accent-dim`.
 - `InputForm`: labeled controls — temperature numeric input (°C), nasal select (none/light/heavy), four Yes/No radio groups; empty/non-numeric temperature blocks the run with an inline message, values outside 30–43 °C warn without blocking; Enter submits through the same guarded run path (FR-1.4).
 - `RunButton`: full-width-ish CTA; loading shows spinner, disables repeat clicks; disabled while temperature is empty (FR-1.4 block).
@@ -46,14 +46,14 @@ Fonts: Inter 700 for display/headings; JetBrains Mono for fact names, rule IDs, 
 | Trigger | Element | Animation |
 | :------ | :------ | :-------- |
 | Page load | Header title | Fade + slide up, once |
-| Run clicked | Button | Pulse + spinner |
+| Run clicked | Button | Tap feedback + spinner |
 | Results land | Trace container | Fade in from below |
 | Per card | Fired-rule cards | Slide from left, 80 ms stagger |
 | Per chip | Fact chips | Scale from 0.8, 40 ms stagger |
-| After chips | Diagnosis card | Delayed entrance + glow pulse |
+| After chips | Diagnosis card | Delayed entrance + glow |
 | Reset / new run | Result sections | `AnimatePresence` fade-out |
 
-APIs: `motion.div` (`initial`/`animate`/`exit`), `AnimatePresence`, `variants` + `staggerChildren`, `useAnimation` in `RunButton`.
+APIs: `motion.div` (`initial`/`animate`/`exit`), `AnimatePresence`, `variants` + `staggerChildren`.
 
 ## States
 

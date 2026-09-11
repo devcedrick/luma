@@ -40,10 +40,10 @@ Build order with done-criteria only. Logic lives in [[REQUIREMENTS]], [[DATA_MOD
 
 ## Phase 4 — Motion + responsive polish
 
-- [ ] T4.1 Entrance stagger — trace 80 ms slide-in, chips 40 ms scale, delayed diagnosis glow, header fade, button pulse (FR-3.1–FR-3.3 per [[ARCHITECTURE]] Flow D). Done: matches animation table in [[UI_GUIDELINES]].
-- [ ] T4.2 Exit transitions — `AnimatePresence` fade-out on reset/new run (FR-3.4). Done: no instant unmount flashes.
-- [ ] T4.3 Responsive pass at 375 px — form grid stacks, trace cards full-width (NFR-3). Done: no horizontal scroll, all controls reachable.
-- [ ] T4.4 About section — in-page anchor section plus header smooth-scroll link (FR-4.3). Done: link scrolls to section; no new route.
+- [x] T4.1 Entrance stagger — trace 80 ms slide-in, chips 40 ms scale, delayed diagnosis glow, header fade, button pulse (FR-3.1–FR-3.3 per [[ARCHITECTURE]] Flow D). Done: matches animation table in [[UI_GUIDELINES]].
+- [x] T4.2 Exit transitions — `AnimatePresence` fade-out on reset/new run (FR-3.4). Done: no instant unmount flashes.
+- [x] T4.3 Responsive pass at 375 px — form grid stacks, trace cards full-width (NFR-3). Done: no horizontal scroll, all controls reachable.
+- [x] T4.4 About dialog — header button opens an accessible modal (backdrop click, Escape, Close button) with animated enter/exit; no new route (FR-4.3). Done: dialog opens and closes cleanly.
 
 ## Phase 5 — Verification + hardening (C-5, NFR sweep)
 

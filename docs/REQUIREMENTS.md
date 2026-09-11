@@ -34,7 +34,7 @@ Derived from [[PROJECT]]. Stack: Next.js 16.3.4 (App Router) + TypeScript strict
 
 - FR-4.1: ~~System shows the persistent academic banner with the exact Section 14 copy.~~ **Removed** — banner component deleted; the academic disclaimer lives in the footer (FR-4.2).
 - FR-4.2: System shows the footer with author name Ken Cedrick Jimeno and the two-line academic disclaimer (`src/components/Footer.tsx`).
-- FR-4.3: User can jump to an in-page About section from the header link via smooth-scroll anchor on the same route (`src/components/Header.tsx`). No new route (see C-4).
+- FR-4.3: User can open an About dialog from the header button on the same route (`src/components/Header.tsx`, `src/components/AboutModal.tsx`). No new route (see C-4); the dialog closes via its Close button, backdrop click, or Escape.
 
 ## 2. Non-functional Requirements
 
