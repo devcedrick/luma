@@ -32,13 +32,13 @@ Fonts: Inter 700 for display/headings; JetBrains Mono for fact names, rule IDs, 
 
 ## Component visual contracts
 
-- `Header`: bordered card with framed mascot mark, short brand title + badge, engine tagline; C-6 sentence in an info box; title fade-in + slide-up once on load; button-style About anchor smooth-scrolls to the in-page section (FR-4.3).
+- `Header`: bordered card with framed mascot mark, short brand title + badge, engine tagline; C-6 sentence in an info box; button-style About anchor smooth-scrolls to the in-page section (FR-4.3).
 - `TestCaseBar`: five equal buttons in a wrapping row; active-case state uses `--accent-dim`.
 - `InputForm`: labeled controls — temperature numeric input (°C), nasal select (none/light/heavy), four Yes/No radio groups; empty/non-numeric temperature blocks the run with an inline message, values outside 30–43 °C warn without blocking; Enter submits through the same guarded run path (FR-1.4).
-- `RunButton`: full-width-ish CTA; loading shows spinner + pulse, disables repeat clicks; disabled while temperature is empty (FR-1.4 block).
+- `RunButton`: full-width-ish CTA; loading shows spinner, disables repeat clicks; disabled while temperature is empty (FR-1.4 block).
 - `InferenceTrace`: vertical timeline; each card has a `--fired` left-border accent, mono `Rule N → conclusion` line, iteration badge.
 - `WorkingMemoryPanel`: wrapping cloud of mono pill chips; facts only, no prose.
-- `DiagnosisCard`: single bold moment — `--conclusion` amber ring + soft glow pulse after chips land.
+- `DiagnosisCard`: single bold moment — `--conclusion` amber ring + soft glow.
 - `Footer`: muted, centered; author + exact C-6 copy.
 
 ## Animation table (Framer Motion)
