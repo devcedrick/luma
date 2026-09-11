@@ -66,7 +66,7 @@ export default function Home() {
                   <button
                     type="button"
                     onClick={reset}
-                    className="text-xs font-medium text-text-muted transition-colors hover:text-text hover:underline focus:outline-none"
+                    className="text-xs font-medium text-text-muted transition-colors hover:text-text hover:underline focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-accent"
                   >
                     Reset results
                   </button>

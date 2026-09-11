@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 
 interface AboutModalProps {
@@ -8,25 +8,52 @@ interface AboutModalProps {
   onClose: () => void;
 }
 
-export default function AboutModal({ isOpen, onClose }: AboutModalProps) {
+const FOCUSABLE_SELECTOR =
+  'a[href], button:not([disabled]), textarea, input, select, [tabindex]:not([tabindex="-1"])';
 
-  // Close on Escape key press and lock background scroll
+export default function AboutModal({ isOpen, onClose }: AboutModalProps) {
+  const dialogRef = useRef<HTMLDivElement>(null);
+
+  // Close on Escape, trap Tab focus inside, lock background scroll,
+  // move focus in on open and restore it to the trigger on close.
   useEffect(() => {
     if (!isOpen) return;
+
+    const previouslyFocused =
+      document.activeElement instanceof HTMLElement
+        ? document.activeElement
+        : null;
 
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
         onClose();
+        return;
+      }
+      if (e.key !== "Tab" || !dialogRef.current) return;
+      const focusables = Array.from(
+        dialogRef.current.querySelectorAll<HTMLElement>(FOCUSABLE_SELECTOR),
+      );
+      if (focusables.length === 0) return;
+      const first = focusables[0];
+      const last = focusables[focusables.length - 1];
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
       }
     };
 
     const originalOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
     window.addEventListener("keydown", handleKeyDown);
+    dialogRef.current?.focus();
 
     return () => {
       document.body.style.overflow = originalOverflow;
       window.removeEventListener("keydown", handleKeyDown);
+      previouslyFocused?.focus();
     };
   }, [isOpen, onClose]);
 
@@ -37,7 +64,9 @@ export default function AboutModal({ isOpen, onClose }: AboutModalProps) {
           role="dialog"
           aria-modal="true"
           aria-labelledby="about-dialog-title"
-          className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6"
+          ref={dialogRef}
+          tabIndex={-1}
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 outline-none sm:p-6"
         >
           {/* Backdrop overlay */}
           <motion.div
