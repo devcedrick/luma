@@ -1,12 +1,24 @@
-import Image from "next/image";
+"use client";
 
-export default function Header() {
+import Image from "next/image";
+import { motion } from "framer-motion";
+
+interface HeaderProps {
+  onOpenAbout: () => void;
+}
+
+export default function Header({ onOpenAbout }: HeaderProps) {
   return (
     <header className="w-full border-b border-border bg-surface/50 backdrop-blur-sm">
       <div className="mx-auto w-full max-w-5xl px-4 py-6 sm:py-8">
-        <div className="relative rounded-xl border border-border bg-surface p-5 sm:p-6 shadow-xs">
+        <motion.div
+          initial={{ opacity: 0, y: -8 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4, ease: "easeOut" }}
+          className="relative rounded-xl border border-border bg-surface p-5 sm:p-6 shadow-xs"
+        >
           <div className="relative flex flex-col gap-4">
-            {/* Top row: Brand mascot mark, title, tag, and About anchor */}
+            {/* Top row: Brand mascot mark, title, tag, and About trigger */}
             <div className="flex flex-wrap items-center justify-between gap-3">
               <div className="flex items-center gap-3">
                 <div className="relative flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-border bg-surface shadow-xs">
@@ -21,7 +33,7 @@ export default function Header() {
                   />
                 </div>
                 <div>
-                  <div className="flex items-center gap-2">
+                  <div className="flex flex-wrap items-center gap-2">
                     <h1 className="text-2xl font-bold tracking-tight text-text sm:text-3xl">
                       Luma
                     </h1>
@@ -35,12 +47,13 @@ export default function Header() {
                 </div>
               </div>
 
-              <a
-                href="#about"
-                className="inline-flex items-center gap-1.5 rounded-lg border border-border bg-surface px-3.5 py-1.5 text-xs font-medium text-text transition-colors hover:border-accent hover:bg-surface/90 hover:text-accent focus:outline-none focus:ring-1 focus:ring-accent"
+              <button
+                type="button"
+                onClick={onOpenAbout}
+                className="inline-flex items-center gap-1.5 rounded-lg border border-border bg-surface px-3.5 py-1.5 text-xs font-medium text-text transition-colors hover:border-accent hover:text-accent focus:outline-none focus:ring-1 focus:ring-accent"
               >
                 <span>About</span>
-              </a>
+              </button>
             </div>
 
             {/* Academic purpose banner text (exact C-6 copy) */}
@@ -68,7 +81,7 @@ export default function Header() {
               </p>
             </div>
           </div>
-        </div>
+        </motion.div>
       </div>
     </header>
   );

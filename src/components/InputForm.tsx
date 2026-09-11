@@ -26,8 +26,8 @@ export default function InputForm({ inputs, onChange, onRun }: InputFormProps) {
       }}
       className="grid w-full grid-cols-1 gap-4 sm:grid-cols-2"
     >
-      <div className="flex flex-col gap-1">
-        <label htmlFor="temperature" className="text-sm font-medium text-text">
+      <div className="flex flex-col gap-1.5">
+        <label htmlFor="temperature" className="text-xs font-semibold uppercase tracking-wider text-text-muted">
           Temperature (°C)
         </label>
         <input
@@ -38,25 +38,24 @@ export default function InputForm({ inputs, onChange, onRun }: InputFormProps) {
           placeholder="36.6"
           value={blocked ? "" : inputs.temperature}
           onChange={(e) => onChange({ temperature: e.target.valueAsNumber })}
-          className="rounded-md border border-border bg-surface px-3 py-2 text-text placeholder:text-text-muted"
+          className="h-10 rounded-lg border border-border bg-surface px-3 py-2 text-sm text-text placeholder:text-text-muted transition-colors focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent"
         />
         {blocked && (
-          <p role="alert" className="text-xs text-conclusion">
+          <p role="alert" className="text-xs text-conclusion break-words">
             Enter a temperature to run inference.
           </p>
         )}
         {warn && (
-          <p className="text-xs text-conclusion">
-            Unusual value — outside the typical 30–43 °C range, but the run
-            will still proceed.
+          <p className="text-xs text-conclusion leading-relaxed break-words">
+            Unusual value — outside typical 30–43 °C range, but the run will still proceed.
           </p>
         )}
       </div>
 
-      <div className="flex flex-col gap-1">
+      <div className="flex flex-col gap-1.5">
         <label
           htmlFor="nasal_breathing"
-          className="text-sm font-medium text-text"
+          className="text-xs font-semibold uppercase tracking-wider text-text-muted"
         >
           Nasal breathing
         </label>
@@ -69,7 +68,7 @@ export default function InputForm({ inputs, onChange, onRun }: InputFormProps) {
               nasal_breathing: e.target.value as PatientInputs["nasal_breathing"],
             })
           }
-          className="rounded-md border border-border bg-surface px-3 py-2 text-text"
+          className="h-10 rounded-lg border border-border bg-surface px-3 py-2 text-sm text-text transition-colors focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent"
         >
           <option value="none">none</option>
           <option value="light">light</option>
@@ -78,12 +77,12 @@ export default function InputForm({ inputs, onChange, onRun }: InputFormProps) {
       </div>
 
       {BOOLEAN_FIELDS.map((field) => (
-        <fieldset key={field.name} className="flex flex-col gap-1">
-          <legend className="text-sm font-medium text-text">
+        <fieldset key={field.name} className="flex flex-col gap-1.5">
+          <legend className="text-xs font-semibold uppercase tracking-wider text-text-muted">
             {field.label}
           </legend>
-          <div className="flex gap-4">
-            <label className="flex items-center gap-1 text-sm text-text-muted">
+          <div className="grid grid-cols-2 gap-2">
+            <label className="flex cursor-pointer items-center justify-center gap-2 rounded-lg border border-border bg-surface/80 px-3 py-2 text-xs font-medium text-text-muted transition-colors hover:border-accent/60 has-[:checked]:border-accent has-[:checked]:bg-accent-dim/40 has-[:checked]:text-text">
               <input
                 type="radio"
                 name={field.name}
@@ -94,7 +93,7 @@ export default function InputForm({ inputs, onChange, onRun }: InputFormProps) {
               />
               Yes
             </label>
-            <label className="flex items-center gap-1 text-sm text-text-muted">
+            <label className="flex cursor-pointer items-center justify-center gap-2 rounded-lg border border-border bg-surface/80 px-3 py-2 text-xs font-medium text-text-muted transition-colors hover:border-accent/60 has-[:checked]:border-accent has-[:checked]:bg-accent-dim/40 has-[:checked]:text-text">
               <input
                 type="radio"
                 name={field.name}

@@ -1,3 +1,7 @@
+"use client";
+
+import { motion } from "framer-motion";
+
 interface RunButtonProps {
   onRun: () => void;
   isLoading: boolean;
@@ -10,12 +14,14 @@ export default function RunButton({
   disabled = false,
 }: RunButtonProps) {
   const busy = isLoading || disabled;
+
   return (
-    <button
+    <motion.button
       type="button"
       onClick={onRun}
       disabled={busy}
-      className="w-full rounded-lg bg-accent px-4 py-3 text-sm font-bold text-bg transition-colors hover:bg-accent/90 disabled:cursor-not-allowed disabled:opacity-50"
+      whileTap={busy ? undefined : { scale: 0.99 }}
+      className="w-full rounded-lg bg-accent px-4 py-3 text-sm font-bold text-bg transition-colors hover:bg-accent/90 disabled:cursor-not-allowed disabled:opacity-50 focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-bg"
     >
       {isLoading ? (
         <span className="flex items-center justify-center gap-2">
@@ -23,11 +29,11 @@ export default function RunButton({
             aria-hidden
             className="h-4 w-4 animate-spin rounded-full border-2 border-bg border-t-transparent"
           />
-          Running…
+          Running inference…
         </span>
       ) : (
         "Run Inference"
       )}
-    </button>
+    </motion.button>
   );
 }
