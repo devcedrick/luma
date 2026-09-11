@@ -15,7 +15,7 @@ export default function RunButton({
       type="button"
       onClick={onRun}
       disabled={busy}
-      className="w-full rounded-md bg-accent px-4 py-3 text-base font-bold text-bg disabled:cursor-not-allowed disabled:opacity-50 sm:w-auto"
+      className="w-full rounded-lg bg-accent px-4 py-3 text-sm font-bold text-bg transition-colors hover:bg-accent/90 disabled:cursor-not-allowed disabled:opacity-50"
     >
       {isLoading ? (
         <span className="flex items-center justify-center gap-2">

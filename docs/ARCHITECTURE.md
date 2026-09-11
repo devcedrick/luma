@@ -50,16 +50,20 @@ Role: pure inference engine. Exports `seedWorkingMemory(inputs: PatientInputs): 
 
 Role: preset data. Exports `TEST_CASES: TestCasePreset[]` (5 entries, §6 outcomes).
 
+### `src/lib/diagnosis.ts`
+
+Role: pure recommendation derivation. Exports `deriveRecommendation(firedRules: FiredRule[]): string` implementing the FR-3.3 filtered-causal rule.
+
 ### `src/hooks/useInference.ts`
 
 Role: run lifecycle state. Exposes `inputs`, `setInputs`, `applyPreset(preset)`, `run()`, `reset()`, `firedRules`, `finalMemory`, `isLoading`, `hasRun`.
 
 ### Components (one role line each)
 
-- `Header.tsx`: mascot mark + short brand title, academic-purpose subtitle (exact C-6 copy), About anchor link smooth-scrolling to the in-page About section (FR-4.3).
+- `Header.tsx`: card with framed mascot mark, short brand title + Expert System badge, engine tagline, C-6 sentence info box, button-style About anchor (FR-4.3).
 - `TestCaseBar.tsx`: `props { cases, onSelect }`; five buttons (FR-1.2).
 - `InputForm.tsx`: `props { inputs, onChange, onRun }`; six controlled inputs; temperature uses `input[type=number]`, blocks empty/NaN with an inline message, warns outside 30–43 °C; Enter submits via the guarded `onRun` (FR-1.1, FR-1.4).
-- `RunButton.tsx`: `props { onRun, isLoading, disabled? }`; CTA + spinner/pulse, disabled while loading or temperature empty (FR-1.3, FR-1.4).
+- `RunButton.tsx`: `props { onRun, isLoading, disabled? }`; CTA + spinner, disabled while loading or temperature empty (FR-1.3, FR-1.4).
 - `InferenceTrace.tsx`: `props { firedRules }`; staggered rule cards (FR-3.1).
 - `WorkingMemoryPanel.tsx`: `props { facts }`; mono fact chips (FR-3.2).
 - `DiagnosisCard.tsx`: `props { recommendation }`; amber-glow conclusion derived by the FR-3.3 filtered-causal rule (disease/decision terminals in rule-id order, fever/nasal fallback).
@@ -98,7 +102,7 @@ Flow D — Animations (FR-3.1–FR-3.4): page-load fade (Header), button pulse (
 | FR-2.1–FR-2.4 | `/` (via run) | `inference`, `rules`, `types` |
 | FR-3.1 | `/` | `InferenceTrace` |
 | FR-3.2 | `/` | `WorkingMemoryPanel` |
-| FR-3.3 | `/` | `DiagnosisCard` |
+| FR-3.3 | `/` | `DiagnosisCard`, `diagnosis` |
 | FR-3.4 | `/` | `useInference`, all result components |
 | FR-4.2 | `/` | `Footer` |
 | FR-4.3 | `/` | `Header` |
